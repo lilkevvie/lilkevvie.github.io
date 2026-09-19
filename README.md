@@ -1,5 +1,7 @@
 # HQ: personal dashboard
 
+**Live at https://lilkevvie.github.io/**. On a computer, click the HQ icon on the desktop or in the Start menu. On a phone, open that address and add it to the home screen.
+
 One private place for everything you track: bank balances, investments, store sales, followers, subscriptions, goals, checklists, or anything new you think of. It's an installable web app (PWA). All data is encrypted on your device.
 
 ## How it's organized

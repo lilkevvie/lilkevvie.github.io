@@ -24,8 +24,16 @@ export function html(strings, ...vals) {
   for (let i = 0; i < vals.length; i++) out += part(vals[i]) + strings[i + 1];
   return new Raw(out);
 }
-// Module-private Trusted Types policy: the only way to produce TrustedHTML.
-const policy = self.trustedTypes?.createPolicy('hq', { createHTML: s => s }) ?? { createHTML: s => s };
+// Module-private Trusted Types policy: the only way to produce TrustedHTML,
+// and the only script URL it will ever vouch for is the app's own service worker.
+const SW_URL = 'sw.js';
+const rules = {
+  createHTML: s => s,
+  createScriptURL: s => { if (s !== SW_URL) throw new TypeError('Only the HQ service worker may be loaded'); return s; },
+};
+const policy = self.trustedTypes?.createPolicy('hq', rules) ?? rules;
+// The service worker's address, in the form Trusted Types requires.
+export const serviceWorkerURL = () => policy.createScriptURL(SW_URL);
 // The only innerHTML sink in the app, and it accepts nothing but html``/raw()
 // output - a plain string is a programming error and throws.
 export function setHTML(el, content) {

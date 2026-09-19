@@ -1,6 +1,6 @@
 // Entry point: event delegation, lock screen, onboarding, session lifecycle, boot.
 import {
-  html, raw, setHTML, $, icon, modal, confirmDialog, closeAllDialogs, toast, clearToast, download, uiBusy, settleHolds,
+  html, raw, setHTML, $, icon, modal, confirmDialog, closeAllDialogs, toast, clearToast, download, uiBusy, settleHolds, serviceWorkerURL,
   dialogOpen, onDialogsClosed, setSubmitGuard, applyTheme, storedTheme, today, sid,
 } from './ui.js';
 import { Vault, useDatabase } from './vault.js';
@@ -513,7 +513,7 @@ function registerServiceWorker() {
     render();
     toast('A new version of HQ is ready.', { label: 'Update now', fn: applyUpdate });
   };
-  navigator.serviceWorker.register('sw.js').then(reg => {
+  navigator.serviceWorker.register(serviceWorkerURL()).then(reg => {
     if (reg.waiting && navigator.serviceWorker.controller) offer(reg.waiting);
     reg.addEventListener('updatefound', () => {
       const w = reg.installing;

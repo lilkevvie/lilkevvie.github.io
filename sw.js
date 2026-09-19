@@ -1,6 +1,6 @@
 // Offline support. Caches only HQ's own code - never user data, which lives
 // encrypted in IndexedDB and is never fetched over the network.
-const VERSION = 'hq-v3.8.2';
+const VERSION = 'hq-v3.9.0';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'js/app.js', 'js/store.js', 'js/persist.js', 'js/views.js', 'js/forms.js', 'js/ui.js', 'js/vault.js', 'js/model.js', 'js/charts.js', 'js/csv.js', 'js/connectors.js', 'js/sync.js', 'js/tableedit.js', 'js/snapshots.js', 'js/model/links.js',
